@@ -1,70 +1,51 @@
-﻿using System;
+using System;
 using System.Windows;
 
-namespace WpfApp1
+namespace WpfApp3
 {
     public partial class MainWindow : Window
     {
-        // Stawka za kilometr
-        private double reimburseRate = 0.39;
+        private DinnerParty dinnerParty;
 
         public MainWindow()
         {
             InitializeComponent();
+            dinnerParty = new DinnerParty
+            {
+                NumberOfPeople = (int)numPeopleUpDown.Value,
+                FancyDecorations = fancyDecorationsCheckBox.IsChecked == true
+            };
+            DisplayDinnerPartyCost();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void DisplayDinnerPartyCost()
         {
-            try
+            decimal cost = dinnerParty.CalculateCost();
+            costLabel.Content = $"${cost:F2}";
+        }
+
+        private void CalculateCostButton_Click(object sender, RoutedEventArgs e)
+        {
+            dinnerParty.NumberOfPeople = (int)numPeopleUpDown.Value;
+            dinnerParty.FancyDecorations = fancyDecorationsCheckBox.IsChecked == true;
+            DisplayDinnerPartyCost();
+        }
+
+        private void numPeopleUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (dinnerParty != null)
             {
-                // Pobranie wartości z pól tekstowych
-                double startingMileage = Convert.ToDouble(textBoxStartingMileage.Text);
-                double endingMileage = Convert.ToDouble(textBoxEndingMileage.Text);
-
-                // Walidacja - czy początkowy stan licznika jest mniejszy od końcowego
-                if (startingMileage > endingMileage)
-                {
-                    MessageBox.Show("Początkowy stan licznika musi być mniejszy niż końcowy stan licznika.", "Błąd");
-                    return;
-                }
-
-                // Obliczanie odległości i kwoty do zwrotu
-                double milesTraveled = endingMileage - startingMileage;
-                double amountOwed = milesTraveled * reimburseRate;
-
-                // Wyświetlanie wyniku
-                labelResult.Text = amountOwed.ToString("C");
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Wprowadź prawidłowe liczby.", "Błąd");
+                dinnerParty.NumberOfPeople = (int)numPeopleUpDown.Value;
+                DisplayDinnerPartyCost();
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void fancyDecorationsCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            try
+            if (dinnerParty != null)
             {
-                // Pobranie wartości z pól tekstowych
-                double startingMileage = Convert.ToDouble(textBoxStartingMileage.Text);
-                double endingMileage = Convert.ToDouble(textBoxEndingMileage.Text);
-
-                // Walidacja - czy początkowy stan licznika jest mniejszy od końcowego
-                if (startingMileage > endingMileage)
-                {
-                    MessageBox.Show("Początkowy stan licznika musi być mniejszy niż końcowy stan licznika.", "Błąd");
-                    return;
-                }
-
-                // Obliczanie odległości i kwoty do zwrotu
-                double milesTraveled = endingMileage - startingMileage;
-                labelResult.Text = milesTraveled.ToString();
-
-
-            }
-            catch (FormatException)
-            {
-                MessageBox.Show("Wprowadź prawidłowe liczby.", "Błąd");
+                dinnerParty.FancyDecorations = fancyDecorationsCheckBox.IsChecked == true;
+                DisplayDinnerPartyCost();
             }
         }
     }
