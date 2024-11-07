@@ -1,25 +1,9 @@
-﻿<Window x:Class="WpfApp1.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Kalkulator Odległości" Height="200" Width="300">
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock Text="Początkowy stan licznika:" Grid.Row="0" VerticalAlignment="Center"/>
-        <TextBox x:Name="textBoxStartingMileage" Grid.Row="0" Margin="150,0,0,5" Width="100"/>
-
-        <TextBlock Text="Końcowy stan licznika:" Grid.Row="1" VerticalAlignment="Center"/>
-        <TextBox x:Name="textBoxEndingMileage" Grid.Row="1" Margin="150,0,0,5" Width="100"/>
-
-        <Button Content="Oblicz" Grid.Row="2" Margin="0,10,0,5" Width="80" HorizontalAlignment="Left" Click="Button_Click" RenderTransformOrigin="0.539,0.663"/>
-
-        <TextBlock Text="Kwota do zwrotu:" Grid.Row="3" VerticalAlignment="Center"/>
-        <TextBlock x:Name="labelResult" Grid.Row="3" Margin="150,0,0,5" VerticalAlignment="Center"/>
-        <Button Content="przebyte" HorizontalAlignment="Left" Margin="165,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="20" Width="80" RenderTransformOrigin="0.168,0.335" Click="button2_Click"/>
-    </Grid>
-</Window>
+<Application x:Class="WpfApp4.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfApp4"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
